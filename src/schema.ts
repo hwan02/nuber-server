@@ -7,16 +7,11 @@ const allTypes: GraphQLSchema[] = fileLoader(
   path.join(__dirname, "./api/**/*.graphql")
 );
 
-const allResolvers: string[] = fileLoader(
-  path.join(__dirname, "./api/**/*.resolvers.*")
-);
-
-const mergedTypes = mergeTypes(allTypes);
-const mergedResolvers = mergeResolvers(allResolvers);
+const allResolvers = fileLoader(path.join(__dirname, "/api/**/*.js"));
 
 const schema = makeExecutableSchema({
-  typeDefs: mergedTypes,
-  resolvers: mergedResolvers
+  typeDefs: mergeTypes(allTypes),
+  resolvers: mergeResolvers(allResolvers)
 });
 
 export default schema;
