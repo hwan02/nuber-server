@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js remove @types/cors @types/helmet @types/morgan
+  C:\Program Files\nodejs\node.exe C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add graphql-tools merge-graphql-schema
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\ssh32\AppData\Local\Microsoft\WindowsApps;C:\Users\ssh32\AppData\Roaming\npm;C:\Users\ssh32\AppData\Local\Programs\Microsoft VS Code\bin
@@ -14,12 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\ssh32\workspace\nuber-server\package.json: Unexpected string in JSON at position 497
-      at JSON.parse (<anonymous>)
-      at C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+  Error: https://registry.yarnpkg.com/merge-graphql-schema: Not found
+      at Request.params.callback [as _callback] (C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66947:18)
+      at Request.self.callback (C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140665:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141637:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (C:\Users\ssh32\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141559:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1184:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -31,24 +36,20 @@ npm manifest:
     "author": "Nicolás Serrano Arévalo <itnico.las.me@gmail.com>",
     "license": "MIT",
     "devDependencies": {
-      "@types/node": "^13.1.2",
-      "nodemon": "^2.0.2",
-      "ts-node": "^8.5.4",
-      "tslint-config-prettier": "^1.18.0",
-      "typescript": "^3.7.4"
-      "@types/cors": "^2.8.6",
-      "@types/helmet": "^0.0.45",
-      "@types/morgan": "^1.7.37",
+      "@types/node": "^10.5.0",
+      "nodemon": "^1.17.5",
+      "ts-node": "^7.0.0",
+      "tslint-config-prettier": "^1.13.0",
+      "typescript": "^2.9.2"
     },
     "scripts": {
       "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
     },
     "dependencies": {
-      "cors": "^2.8.5",
-      "graphql-yoga": "^1.18.3",
-      "helmet": "^3.21.2",
-      "morgan": "^1.9.1",
-      "yarn": "^1.21.1"
+      "cors": "^2.8.4",
+      "graphql-yoga": "^1.14.10",
+      "helmet": "^3.12.1",
+      "morgan": "^1.9.0"
     }
   }
 
