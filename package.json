@@ -30,6 +30,8 @@
     "helmet": "^3.21.2",
     "merge-graphql-schemas": "^1.7.6",
     "morgan": "^1.9.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pg": "^7.17.1",
+    "typeorm": "^0.2.22"
   }
 }
