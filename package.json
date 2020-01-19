@@ -24,6 +24,8 @@
   "dependencies": {
     "@types/helmet": "^0.0.45",
     "@types/morgan": "^1.7.37",
+    "all": "^0.0.0",
+    "class-validator": "^0.11.0",
     "cors": "^2.8.4",
     "dotenv": "^8.2.0",
     "graphql-tools": "^4.0.6",

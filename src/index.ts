@@ -18,5 +18,5 @@ endpoint: GRAPHQL_ENDPOINT
 const handleAppStart = () => console.log(`Listening on port ${PORT}`);
 
 createConnection(connectionOptions).then(()=>{
-    app.start(appOptions, handleAppStart);
+    app.start(appOptions, handleAppStart); 
 }).catch(error => console.log(error));
