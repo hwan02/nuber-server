@@ -14,7 +14,6 @@ import {
 } from "typeorm";
 import Chat from "./Chat";
 import Message from "./Message";
-import Verification from "./Verification";
 import Ride from "./Ride";
 
 const BCRYPT_ROUNDS = 10;
@@ -46,7 +45,7 @@ class User extends BaseEntity {
   phoneNumber: string;
 
   @Column({ type: "boolean", default: false })
-  verifiedPhonenNumber: boolean;
+  verifiedPhoneNumber: boolean;
 
   @Column({ type: "text", nullable: true})
   fbId: string | null;
@@ -76,8 +75,6 @@ class User extends BaseEntity {
     chat: Chat;
   @OneToMany(type => Message, messages => messages.user)
     messages: Message[];  
-  @OneToMany(type => Verification, verification => verification.user)
-  verification: Verification[]
   @OneToMany(type => Ride, ride => ride.passenger)
   rideAsPassenger: Ride[];  
   @OneToMany(type => Ride, ride => ride.driver)
@@ -88,6 +85,20 @@ class User extends BaseEntity {
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  public comparePassword(password: string): Promise<boolean> {
+    const tPassword = this.password;
+    return new Promise(function(resolve, reject){
+      bcrypt.compare(password, tPassword, function(err, res){
+        if(err) return false;
+        else if(res){
+          if(res) return true;
+          else return false;
+      }
+      return false;
+    }); 
+  });
+}
 
   @BeforeInsert()
   @BeforeUpdate()

@@ -1,6 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn,  Entity, UpdateDateColumn, PrimaryGeneratedColumn, BeforeInsert, ManyToOne } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn,  Entity, UpdateDateColumn, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
 import { verificationTarget } from "src/types/types";
-import User from "./User";
 
 const PHONE = "PHONE";
 const EMAIL = "EMAIL";
@@ -13,10 +12,10 @@ class Verification extends BaseEntity{
     payload : string;
     @Column({ type: "text" })
     key : string;
-    @Column({ type: "boolean", default:false })
-    used: boolean;
-    @ManyToOne( type => User, user => user.verification)
-    user: User;
+
+    @Column({ type: "boolean", default: false })
+    verified: boolean;
+
     @CreateDateColumn() createdAt: string;
     @UpdateDateColumn() updatedAt: string;
 
