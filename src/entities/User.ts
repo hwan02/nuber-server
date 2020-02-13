@@ -88,14 +88,16 @@ class User extends BaseEntity {
 
   public comparePassword(password: string): Promise<boolean> {
     const tPassword = this.password;
+    let flag: boolean;
     return new Promise(function(resolve, reject){
       bcrypt.compare(password, tPassword, function(err, res){
-        if(err) return false;
+        if(err) flag = false;
         else if(res){
-          if(res) return true;
-          else return false;
+          if(res) flag=true;
+          else flag= false;
       }
-      return false;
+      if(flag) resolve(flag)
+      else reject(new Error("Compare password Failed"))
     }); 
   });
 }

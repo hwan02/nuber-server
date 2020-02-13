@@ -22,8 +22,12 @@ const resolvers: Resolvers = {
             token: null
           };
         }
+        //여기서 에러 
         const checkPassword = await user.comparePassword(password);
+        console.log(checkPassword)
+        console.log("2")
         if (checkPassword) {
+          console.log("3")
           const token = createJWT(user.id);
           return {
             ok: true,
