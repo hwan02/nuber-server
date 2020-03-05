@@ -5,6 +5,7 @@ import {
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/privateResolver";
+import cleanNullArgs from "../../../utils/cleanNullArgs";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -15,24 +16,24 @@ const resolvers: Resolvers = {
         { req }
       ): Promise<UpdateMyProfileResponse> => {
         const user: User = req.user;
-        const notNull = {};
-        Object.keys(args).forEach(key => {
-          if (args[key] !== null) {
-            notNull[key] = args[key];
+        const notNull:any = cleanNullArgs(args);
+        if(notNull.password !== null) { 
+            user.password = notNull.password; 
+            await user.save();
+            delete notNull.password; 
           }
-        });
-        try {
-          await User.update({ id: user.id }, { ...notNull });
-          return {
-            ok: true,
-            error: null
-          };
-        } catch (error) {
-          return {
-            ok: false,
-            error: error.message
-          };
-        }
+          try {
+            await User.update({ id: user.id }, { ...notNull }); 
+            return {
+              ok: true,
+              error: null
+            };
+          } catch (error) {
+            return {
+              ok: false,
+              error: error.message
+            };
+          }
       }
     )
   }
